@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 public class ACMEappMain {
     private static final Logger logger = LogManager.getLogger(ACMEappMain.class);
     public static void main(String[] args) {
-
+        logger.info("aaaa");
     }
 
 }
