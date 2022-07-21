@@ -10,6 +10,8 @@ public class Order {
     private PaymentMethod paymentMethod;
     private double paymentAmount;
 
+    private Customer customer = new Customer();
+
     public Order() {
     }
 
