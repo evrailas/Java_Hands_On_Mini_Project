@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69264539-b4e8-45e9-9126-3d539cdab683" name="Changes" comment="Logger configuration and initialized in the main class.">
+    <list default="true" id="69264539-b4e8-45e9-9126-3d539cdab683" name="Changes" comment="Add Maven dependencies">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Team3/JavaMiniProject/Customer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Team3/JavaMiniProject/CustomerType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Team3/JavaMiniProject/Order.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Team3/JavaMiniProject/OrderItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Team3/JavaMiniProject/PaymentMethod.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Team3/JavaMiniProject/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application-20220720.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Team3/JavaMiniProject/ACMEappMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Team3/JavaMiniProject/ACMEappMain.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -18,8 +22,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Tag Library Descriptor" />
+        <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -30,26 +35,29 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2CD39f4chlDl8EN3C0keZBsZFxW" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;build.tools&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.editor"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="ACMEappMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Team3.JavaMiniProject.ACMEappMain" />
@@ -79,7 +87,7 @@
       <option name="presentableId" value="Default" />
       <updated>1658323180659</updated>
       <workItem from="1658323182277" duration="3030000" />
-      <workItem from="1658397787337" duration="634000" />
+      <workItem from="1658397787337" duration="8016000" />
     </task>
     <task id="LOCAL-00001" summary="Create maven project.">
       <created>1658323253787</created>
@@ -102,7 +110,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658326142253</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Add Maven dependencies">
+      <created>1658398467731</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1658398467731</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -120,9 +135,11 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Create maven project." />
     <MESSAGE value="Add logger file (not yet configured)" />
     <MESSAGE value="Logger configuration and initialized in the main class." />
-    <option name="LAST_COMMIT_MESSAGE" value="Logger configuration and initialized in the main class." />
+    <MESSAGE value="Add Maven dependencies" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Maven dependencies" />
   </component>
 </project>
