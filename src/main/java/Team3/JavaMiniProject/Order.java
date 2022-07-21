@@ -12,6 +12,8 @@ public class Order {
 
     private Customer customer = new Customer();
 
+    // test about branch stage2
+
     public Order() {
     }
 
