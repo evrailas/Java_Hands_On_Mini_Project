@@ -1,7 +1,9 @@
 package Team3.JavaMiniProject;
 
 import java.net.PasswordAuthentication;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Order {
 
@@ -12,15 +14,18 @@ public class Order {
 
     private Customer customer = new Customer();
 
+    private List<OrderItem> orderItemList = new ArrayList<>();
+
     public Order() {
     }
 
-
-    public Order(int orderID, String deliveryAddress, PaymentMethod paymentMethod, double paymentAmount) {
+    public Order(int orderID, String deliveryAddress, PaymentMethod paymentMethod, double paymentAmount, Customer customer, List<OrderItem> orderItemList) {
         this.orderID = orderID;
         this.deliveryAddress = deliveryAddress;
         this.paymentMethod = paymentMethod;
         this.paymentAmount = paymentAmount;
+        this.customer = customer;
+        this.orderItemList = orderItemList;
     }
 
     public int getOrderID() {
@@ -39,4 +44,11 @@ public class Order {
         return paymentAmount;
     }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public List<OrderItem> getOrderItemList() {
+        return orderItemList;
+    }
 }
