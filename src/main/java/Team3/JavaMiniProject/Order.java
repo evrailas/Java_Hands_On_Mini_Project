@@ -41,6 +41,20 @@ public class Order {
     }
 
     public double getPaymentAmount() {
+        switch(this.paymentMethod){
+            case wireTransfer -> {
+
+                break;
+            }
+            case creditCard -> {
+
+                break;
+            }
+            case cash -> {
+
+                break;
+            }
+        }
         return paymentAmount;
     }
 
