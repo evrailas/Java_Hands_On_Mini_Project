@@ -23,6 +23,16 @@ public class Customer {
         return customerID;
     }
 
+    public void setCustomerDiscount(){
+        if(this.customerType.equals(CustomerType.B2B))
+            this.customerDiscount=0.2;
+        if(this.customerType.equals(CustomerType.B2G))
+            this.customerDiscount=0.5;
+        if(this.customerType.equals(CustomerType.B2C))
+            this.customerDiscount=0.0;
+
+    }
+
     public String getFullName() {
         return fullName;
     }
@@ -35,20 +45,22 @@ public class Customer {
         return customerType;
     }
 
-    public double getCustomerDiscount() {
-     switch (this.getCustomerType()){
-         case B2C -> {
-             this.customerDiscount = 0;
-             break;
-         }
-         case B2B -> {
-             this.customerDiscount = 20;
-             break;
-         }
-         case B2G -> {
-             this.customerDiscount = 50;
-         }
-     }
-        return customerDiscount;
-    }
+//Function to be removed
+//set prefix   instead of get
+//    public double getCustomerDiscount() {
+//     switch (this.getCustomerType()){
+//         case B2C -> {
+//             this.customerDiscount = 0;
+//             break;
+//         }
+//         case B2B -> {
+//             this.customerDiscount = 20;
+//             break;
+//         }
+//         case B2G -> {
+//             this.customerDiscount = 50;
+//         }
+//     }
+//        return customerDiscount;
+//    }
 }
