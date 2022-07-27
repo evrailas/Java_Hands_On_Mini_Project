@@ -15,7 +15,7 @@ import java.util.List;
 public class CustomerRepository {
     private static final Logger logger = LogManager.getLogger(CustomerRepository.class);
 
-    public void selectCustomers() {
+    public List<Customer> selectCustomers() {
         List<Customer> customers = new ArrayList<>();
         try{
 
@@ -30,9 +30,11 @@ public class CustomerRepository {
 
             }
 
+
         }catch (SQLException ex){
             logger.error("Error while getting customers", ex);
         }
+        return customers;
 
     }
 
