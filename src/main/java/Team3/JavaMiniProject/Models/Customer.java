@@ -1,12 +1,18 @@
-package Team3.JavaMiniProject;
+package Team3.JavaMiniProject.Models;
 
-public class Customer {
+import Team3.JavaMiniProject.Enums.CustomerType;
+
+import java.util.List;
+
+public class Customer implements IPay {
 
     private int customerID;
     private String fullName;
     private String address;
     private CustomerType customerType;
     private double customerDiscount;
+
+    private List<Order> orders;
 
     public Customer(){
 
@@ -41,26 +47,8 @@ public class Customer {
         return address;
     }
 
-    public CustomerType getCustomerType() {
-        return customerType;
+    public String getCustomerType() {
+        return String.valueOf(customerType);
     }
 
-//Function to be removed
-//set prefix   instead of get
-//    public double getCustomerDiscount() {
-//     switch (this.getCustomerType()){
-//         case B2C -> {
-//             this.customerDiscount = 0;
-//             break;
-//         }
-//         case B2B -> {
-//             this.customerDiscount = 20;
-//             break;
-//         }
-//         case B2G -> {
-//             this.customerDiscount = 50;
-//         }
-//     }
-//        return customerDiscount;
-//    }
 }

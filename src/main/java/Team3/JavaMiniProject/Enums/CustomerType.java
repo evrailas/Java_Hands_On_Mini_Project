@@ -1,4 +1,4 @@
-package Team3.JavaMiniProject;
+package Team3.JavaMiniProject.Enums;
 
 public enum CustomerType {
     B2C,

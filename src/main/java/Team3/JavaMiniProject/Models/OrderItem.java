@@ -1,15 +1,13 @@
-package Team3.JavaMiniProject;
+package Team3.JavaMiniProject.Models;
 
-import com.zaxxer.hikari.HikariDataSource;
+import Team3.JavaMiniProject.Models.Product;
 
-import java.sql.Array;
-import java.util.ArrayList;
 import java.util.List;
 
-public class OrderItem extends Product{
+public class OrderItem extends Product {
 
     private double finalPrice;
-    private List<Product> list1 = new ArrayList<Product>(){};
+    private List<Product> list;
 
 
     public OrderItem(int productID, String productName, double productPrice, String productInfo, double finalPrice) {

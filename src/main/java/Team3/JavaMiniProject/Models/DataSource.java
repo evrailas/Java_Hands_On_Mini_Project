@@ -1,4 +1,4 @@
-package Team3.JavaMiniProject;
+package Team3.JavaMiniProject.Models;
 
 import com.thedeanda.lorem.Lorem;
 import com.thedeanda.lorem.LoremIpsum;

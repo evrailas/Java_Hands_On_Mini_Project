@@ -1,8 +1,7 @@
-package Team3.JavaMiniProject;
+package Team3.JavaMiniProject.Models;
 
-import java.net.PasswordAuthentication;
-import java.util.ArrayList;
-import java.util.Date;
+import Team3.JavaMiniProject.Enums.PaymentMethod;
+
 import java.util.List;
 
 public class Order {
@@ -12,9 +11,9 @@ public class Order {
     private PaymentMethod paymentMethod;
     private double paymentAmount;
 
-    private Customer customer = new Customer();
+    private Customer customer;
 
-    private List<OrderItem> orderItemList = new ArrayList<>();
+    private List<OrderItem> orderItemList;
 
     public Order() {
     }
@@ -41,20 +40,6 @@ public class Order {
     }
 
     public double getPaymentAmount() {
-        switch(this.paymentMethod){
-            case wireTransfer -> {
-
-                break;
-            }
-            case creditCard -> {
-
-                break;
-            }
-            case cash -> {
-
-                break;
-            }
-        }
         return paymentAmount;
     }
 
