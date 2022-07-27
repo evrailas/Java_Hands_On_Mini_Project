@@ -27,6 +27,10 @@ public class DataSource {
         config.setJdbcUrl(DB_CONNECTION_URL_FILE_MODE );
         config.setUsername( DB_USERNAME );
         config.setPassword( DB_PASSWORD );
+
+        config.setConnectionTimeout(10000);
+        config.setAutoCommit(true);
+
         config.addDataSourceProperty( "cachePrepStmts" , "true" );
         config.addDataSourceProperty( "prepStmtCacheSize" , "250" );
         config.addDataSourceProperty( "prepStmtCacheSqlLimit" , "2048" );
