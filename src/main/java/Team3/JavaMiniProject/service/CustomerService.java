@@ -50,6 +50,7 @@ public class CustomerService implements CRUDRepository<Customer, Long> {
         customerRepository.delete(customer);
     }
 
+    @Override
     public List<Customer> findAll(){
         logger.info("Finding all Customers");
         List<Customer> allSavedCustomers = customerRepository.findAll();
