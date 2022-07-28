@@ -1,7 +1,9 @@
 package Team3.JavaMiniProject.model;
 
-import java.math.BigDecimal;
+import lombok.experimental.SuperBuilder;
 
+import java.math.BigDecimal;
+@SuperBuilder
 public class Product extends BaseModel {
 
     private String productName;

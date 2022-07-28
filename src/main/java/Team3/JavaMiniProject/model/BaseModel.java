@@ -1,5 +1,8 @@
 package Team3.JavaMiniProject.model;
 
+import lombok.experimental.SuperBuilder;
+
+@SuperBuilder
 public abstract class BaseModel {
 
     private long id;
