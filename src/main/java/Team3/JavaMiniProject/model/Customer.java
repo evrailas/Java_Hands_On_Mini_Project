@@ -9,12 +9,12 @@ public class Customer extends BaseModel{
     private CustomerType customerType;
     private double customerDiscount;
 
-    public Customer(long id,String fullName, String address, CustomerType customerType, double customerDiscount) {
+    public Customer(long id,String fullName, String address, CustomerType customerType) {
         super(id);
         this.fullName = fullName;
         this.address = address;
         this.customerType = customerType;
-        this.customerDiscount = customerDiscount;
+
     }
 
     public String getFullName() {
