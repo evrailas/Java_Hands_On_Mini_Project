@@ -12,7 +12,7 @@ import java.util.List;
 @Setter
 @ToString(callSuper = true)
 @SuperBuilder
-public class OrderItem extends Product {
+public class OrderItem extends BaseModel {
 
     private BigDecimal finalPrice;
     private List<Product> list;

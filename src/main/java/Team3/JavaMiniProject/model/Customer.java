@@ -17,7 +17,6 @@ public class Customer extends BaseModel{
     private String fullName;
     private String address;
     private CustomerType customerType;
-    private double customerDiscount;
     private Wallet wallet;
 
 
