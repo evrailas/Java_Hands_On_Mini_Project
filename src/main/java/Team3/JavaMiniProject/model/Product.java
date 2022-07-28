@@ -1,17 +1,19 @@
-package Team3.JavaMiniProject.Models;
+package Team3.JavaMiniProject.model;
+
+import java.math.BigDecimal;
 
 public class Product {
 
     private int productID;
     private String productName;
-    private double productPrice;
+    private BigDecimal productPrice;
     private String productInfo;
 
     public Product(){
 
     }
 
-    public Product(int productID, String productName, double productPrice, String productInfo) {
+    public Product(int productID, String productName, BigDecimal productPrice, String productInfo) {
         this.productID = productID;
         this.productName = productName;
         this.productPrice = productPrice;
@@ -26,7 +28,7 @@ public class Product {
         return productName;
     }
 
-    public double getProductPrice() {
+    public BigDecimal getProductPrice() {
         return productPrice;
     }
 

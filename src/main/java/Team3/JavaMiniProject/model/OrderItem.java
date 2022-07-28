@@ -1,6 +1,4 @@
-package Team3.JavaMiniProject.Models;
-
-import Team3.JavaMiniProject.Models.Product;
+package Team3.JavaMiniProject.model;
 
 import java.util.List;
 

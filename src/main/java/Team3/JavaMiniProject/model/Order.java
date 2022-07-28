@@ -1,6 +1,6 @@
-package Team3.JavaMiniProject.Models;
+package Team3.JavaMiniProject.model;
 
-import Team3.JavaMiniProject.Enums.PaymentMethod;
+import Team3.JavaMiniProject.types.PaymentMethod;
 
 import java.util.List;
 

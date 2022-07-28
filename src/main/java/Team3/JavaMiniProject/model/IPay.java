@@ -1,4 +1,4 @@
-package Team3.JavaMiniProject.Models;
+package Team3.JavaMiniProject.model;
 
 public interface IPay {
 

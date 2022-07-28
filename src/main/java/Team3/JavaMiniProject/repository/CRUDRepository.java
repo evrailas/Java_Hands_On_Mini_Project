@@ -1,4 +1,4 @@
-package Team3.JavaMiniProject.Repositories;
+package Team3.JavaMiniProject.repository;
 
 import java.util.List;
 import java.util.Optional;
