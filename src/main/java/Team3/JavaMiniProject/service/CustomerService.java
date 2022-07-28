@@ -4,6 +4,7 @@ import Team3.JavaMiniProject.ACMEappMain;
 import Team3.JavaMiniProject.model.Customer;
 import Team3.JavaMiniProject.repository.CRUDRepository;
 import Team3.JavaMiniProject.repository.CustomerRepository;
+import Team3.JavaMiniProject.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.LogManager;
@@ -15,6 +16,7 @@ import java.util.Optional;
 @AllArgsConstructor
 @Slf4j
 public class CustomerService implements CRUDRepository<Customer, Long> {
+
 
     private final CustomerRepository customerRepository;
     private static final Logger logger = LogManager.getLogger(ACMEappMain.class);
