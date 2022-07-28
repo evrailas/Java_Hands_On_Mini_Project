@@ -52,6 +52,7 @@ public class CustomerRepository {
             String sql = "INSERT INTO customers (fullName, address, customerType)" + "VALUES(?,?,?)";
             PreparedStatement statement = con.prepareStatement(sql);
 
+
            statement.setString(1, customer.getFullName());
            statement.setString(2, customer.getAddress());
            statement.setString(3, customer.getCustomerType());
