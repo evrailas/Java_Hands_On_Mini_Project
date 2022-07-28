@@ -38,15 +38,16 @@ public class ProductRepository implements CRUDRepository<Product,Long> {
 
     @Override
     public Optional<Product> findByID(Long aLong) {
-        try (Connection connection = DataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("")) {
+        try {
+            Connection connection = DataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQLrepository.get("find.by.id"));
 
             logger.debug("Finding product with ID={}", aLong);
 
 
             preparedStatement.setLong(1, aLong);
-
             ResultSet resultSet = preparedStatement.executeQuery();
+
             if (resultSet.next()) {
                 return Optional.of(Product.builder().id(resultSet.getLong("id"))
                         .productName(resultSet.getString("productName"))
@@ -66,8 +67,8 @@ public class ProductRepository implements CRUDRepository<Product,Long> {
 
     @Override
     public void delete(Product product) {
-        try (Connection connection = DataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("")){
+        try{ Connection connection = DataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQLrepository.get("delete.product"));
 
             log.info("Deleting product {}", product);
 
@@ -87,16 +88,15 @@ public class ProductRepository implements CRUDRepository<Product,Long> {
         try{
 
             Connection con = DataSource.getConnection();
-            String sql = "INSERT INTO customers (fullName, address, customerType)" + "VALUES(?,?,?)";
-            PreparedStatement statement = con.prepareStatement(sql);
+            PreparedStatement preparedStatement = con.prepareStatement(SQLrepository.get("create.product"));
             log.debug("Creating and inserting product{}",product);
 
 
-            statement.setString(1, product.getProductName());
-            statement.setString(2, product.getProductPrice().toString());
-            statement.setString(3, product.getProductInfo());
+            preparedStatement.setString(1, product.getProductName());
+            preparedStatement.setString(2, product.getProductPrice().toString());
+            preparedStatement.setString(3, product.getProductInfo());
 
-            int row = statement.executeUpdate();
+            int row = preparedStatement.executeUpdate();
 
             if (row > 0){
                 logger.info("A new product has been inserted successfully.");
@@ -115,17 +115,16 @@ public class ProductRepository implements CRUDRepository<Product,Long> {
         try{
 
             Connection con = DataSource.getConnection();
-            String sql = "INSERT INTO products (fullName, address, customerType)" + "VALUES(?,?,?)";
-            PreparedStatement statement = con.prepareStatement(sql);
+            PreparedStatement preparedStatement = con.prepareStatement(SQLrepository.get("create.all.product"));
             log.debug("Creating a list of products with size{}",products.length);
             for(Product product:products){
-                statement.setString(1, product.getProductName());
-                statement.setString(2, product.getProductPrice().toString());
-                statement.setString(3, product.getProductInfo());
+                preparedStatement.setString(1, product.getProductName());
+                preparedStatement.setString(2, product.getProductPrice().toString());
+                preparedStatement.setString(3, product.getProductInfo());
 
             }
 
-            statement.addBatch();
+            preparedStatement.addBatch();
             return Arrays.asList(products);
 
 
@@ -142,14 +141,13 @@ public class ProductRepository implements CRUDRepository<Product,Long> {
         try{
 
             Connection con = DataSource.getConnection();
-            String sql = "INSERT INTO customers (fullName, address, customerType)" + "VALUES(?,?,?)";
-            PreparedStatement statement = con.prepareStatement(sql);
+            PreparedStatement preparedStatement = con.prepareStatement(SQLrepository.get("update.product"));
             log.debug("Updating products {}",product);
 
-            statement.setString(1, product.getProductName());
-            statement.setString(2, product.getProductPrice().toString());
-            statement.setString(3, product.getProductInfo());
-            statement.executeUpdate();
+            preparedStatement.setString(1, product.getProductName());
+            preparedStatement.setString(2, product.getProductPrice().toString());
+            preparedStatement.setString(3, product.getProductInfo());
+            preparedStatement.executeUpdate();
 
         }catch (SQLException ex){
             logger.error("Error while creating products{}", ex);
