@@ -7,7 +7,6 @@ import java.util.List;
 
 public class Order extends BaseModel {
 
-    private int orderID;
     private String deliveryAddress;
     private PaymentMethod paymentMethod;
     private BigDecimal paymentAmount;
@@ -24,14 +23,6 @@ public class Order extends BaseModel {
         this.paymentAmount = paymentAmount;
         this.customer = customer;
         this.orderItemList = orderItemList;
-    }
-
-    public int getOrderID() {
-        return orderID;
-    }
-
-    public void setOrderID(int orderID) {
-        this.orderID = orderID;
     }
 
     public String getDeliveryAddress() {

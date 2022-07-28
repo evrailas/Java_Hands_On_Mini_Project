@@ -8,13 +8,21 @@ public class Customer extends BaseModel{
     private String address;
     private CustomerType customerType;
     private double customerDiscount;
+    private Wallet wallet;
 
     public Customer(long id,String fullName, String address, CustomerType customerType) {
         super(id);
         this.fullName = fullName;
         this.address = address;
         this.customerType = customerType;
+        wallet = new Wallet(20.0f);
 
+    }
+
+    public void PayAmount(float amountToPay)
+    {
+        if (wallet.Value >= amountToPay)
+            wallet.SubMoney(amountToPay);
     }
 
     public String getFullName() {
