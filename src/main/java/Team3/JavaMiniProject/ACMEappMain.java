@@ -86,14 +86,17 @@ public class ACMEappMain {
 
     private static void populateTables() {
         try {
-
+            logger.info("Populating Customer and Product tables");
             Connection con = DataSource.getConnection();
-            PreparedStatement statement = null;
-            statement.addBatch(String.valueOf(customerService.createAll()));
-            statement.addBatch(String.valueOf(productService.createAll()));
+            String x = String.valueOf((customerService.createAll()));
+            String y = String.valueOf(productService.createAll());
+            Statement statement = con.prepareStatement(SQLrepository.get(x));
+            Statement statement1 = con.prepareStatement(SQLrepository.get(y));
+
 
 
         } catch (SQLException ex) {
+            logger.error("Something went wrong when populating tables.",ex);
 
         }
     }
