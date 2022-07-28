@@ -1,8 +1,9 @@
-package Team3.JavaMiniProject.Repositories;
+package Team3.JavaMiniProject.repository;
 
-import Team3.JavaMiniProject.Enums.CustomerType;
-import Team3.JavaMiniProject.Models.Customer;
-import Team3.JavaMiniProject.Models.DataSource;
+import Team3.JavaMiniProject.model.BaseModel;
+import Team3.JavaMiniProject.types.CustomerType;
+import Team3.JavaMiniProject.model.Customer;
+import Team3.JavaMiniProject.model.DataSource;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,8 +26,13 @@ public class CustomerRepository {
             ResultSet result = statement.executeQuery(sql);
 
             while(result.next()){
-                    customers.add(new Customer(result.getInt("user_id"),result.getString(" "),
-                            result.getString(" "), CustomerType.valueOf(result.getString(" "))));
+                    customers.add(new Customer(result.getLong("id"),
+                            result.getString("fullName"),
+                            result.getString("address"),
+                            CustomerType.valueOf(result.getString("customerType"))));
+
+                    logger.info(String.valueOf(result.getInt("user_id")),result.getString(" "),
+                            result.getString(" "), CustomerType.valueOf(result.getString(" ")));
 
             }
 
@@ -42,7 +48,7 @@ public class CustomerRepository {
 
         try{
 
-            Customer customer = new Customer();
+            Customer customer = new Customer;
             Connection con = DataSource.getConnection();
             String sql = "INSERT INTO customers (fullName, address, customerType)" + "VALUES(?,?,?)";
             PreparedStatement statement = con.prepareStatement(sql);
