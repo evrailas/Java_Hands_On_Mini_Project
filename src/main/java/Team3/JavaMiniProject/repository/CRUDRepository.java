@@ -12,7 +12,7 @@ public interface CRUDRepository<T, ID> {
 
     void delete(T t)  ;
 
-    Customer create(T t) ;
+    T create(T t) ;
 
     List<T> createAll(T... ts) ;
 

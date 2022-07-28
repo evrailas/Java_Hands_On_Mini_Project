@@ -84,7 +84,7 @@ public class ProductRepository implements CRUDRepository<Product,Long> {
     }
 
     @Override
-    public Customer create(Product product) {
+    public Product create(Product product) {
 
         try{
 

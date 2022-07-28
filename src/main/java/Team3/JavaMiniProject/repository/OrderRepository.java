@@ -82,7 +82,7 @@ public class OrderRepository implements  CRUDRepository<Order, Long> {
     }
 
     @Override
-    public Customer create(Order order) {
+    public Order create(Order order) {
         try{
 
             Connection con = DataSource.getConnection();
