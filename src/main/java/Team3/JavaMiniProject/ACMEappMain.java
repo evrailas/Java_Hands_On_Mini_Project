@@ -2,6 +2,7 @@ package Team3.JavaMiniProject;
 import Team3.JavaMiniProject.model.Customer;
 import Team3.JavaMiniProject.model.DataSource;
 import Team3.JavaMiniProject.model.Product;
+import Team3.JavaMiniProject.model.Wallet;
 import Team3.JavaMiniProject.repository.CustomerRepository;
 import Team3.JavaMiniProject.repository.ProductRepository;
 import Team3.JavaMiniProject.repository.SQLrepository;
@@ -99,5 +100,29 @@ public class ACMEappMain {
             logger.error("Something went wrong when populating tables.",ex);
 
         }
+    }
+    private static List<Customer> customerCreation(){
+
+        List<Customer> costumers=List.of(
+                Customer.builder().fullName("Ivan Moody").address("Athens 1").customerType(CustomerType.B2B).wallet(new Wallet(100)).build(),
+                Customer.builder().fullName("Jason Hook").address("Athens 2").customerType(CustomerType.B2C).wallet(new Wallet(1000)).build(),
+                Customer.builder().fullName("Chris Kael").address("Athens 3").customerType(CustomerType.B2G).wallet(new Wallet(50000)).build(),
+                Customer.builder().fullName("Cory Tailor").address("Athens 4").customerType(CustomerType.B2C).wallet(new Wallet(100403)).build(),
+                Customer.builder().fullName("Vaggelis Moody").address("Athens 5").customerType(CustomerType.B2B).wallet(new Wallet(1000)).build(),
+                Customer.builder().fullName("Spyros Moody").address("Athens 6").customerType(CustomerType.B2C).wallet(new Wallet(10000)).build(),
+                Customer.builder().fullName("Evangelos Moody").address("Athens 7").customerType(CustomerType.B2G).wallet(new Wallet(100)).build(),
+                Customer.builder().fullName("Dimos Moody").address("Athens 8").customerType(CustomerType.B2C).wallet(new Wallet(100)).build(),
+                Customer.builder().fullName("Dimitris Dim").address("Athens 9").customerType(CustomerType.B2B).wallet(new Wallet(100)).build(),
+                Customer.builder().fullName("Ivan Moody").address("Athens 10").customerType(CustomerType.B2G).wallet(new Wallet(100)).build(),
+                Customer.builder().fullName("Ivan Moody").address("Athens 11").customerType(CustomerType.B2C).wallet(new Wallet(100)).build(),
+                Customer.builder().fullName("Ivan Moody").address("Athens 12").customerType(CustomerType.B2G).wallet(new Wallet(100)).build(),
+                Customer.builder().fullName("Ivan Moody").address("Athens 13").customerType(CustomerType.B2G).wallet(new Wallet(100)).build(),
+                Customer.builder().fullName("Ivan Moody").address("Athens 14").customerType(CustomerType.B2C).wallet(new Wallet(100)).build(),
+                Customer.builder().fullName("Ivan Moody").address("Athens 15").customerType(CustomerType.B2B).wallet(new Wallet(100)).build()
+
+
+
+        );
+        return costumers;
     }
 }
