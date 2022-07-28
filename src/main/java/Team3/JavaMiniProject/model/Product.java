@@ -2,37 +2,41 @@ package Team3.JavaMiniProject.model;
 
 import java.math.BigDecimal;
 
-public class Product {
+public class Product extends BaseModel {
 
-    private int productID;
     private String productName;
     private BigDecimal productPrice;
     private String productInfo;
 
-    public Product(){
 
-    }
-
-    public Product(int productID, String productName, BigDecimal productPrice, String productInfo) {
-        this.productID = productID;
+    public Product(long id, String productName, BigDecimal productPrice, String productInfo) {
+        super(id);
         this.productName = productName;
         this.productPrice = productPrice;
         this.productInfo = productInfo;
-    }
-
-    public int getProductID() {
-        return productID;
     }
 
     public String getProductName() {
         return productName;
     }
 
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
     public BigDecimal getProductPrice() {
         return productPrice;
     }
 
+    public void setProductPrice(BigDecimal productPrice) {
+        this.productPrice = productPrice;
+    }
+
     public String getProductInfo() {
         return productInfo;
+    }
+
+    public void setProductInfo(String productInfo) {
+        this.productInfo = productInfo;
     }
 }

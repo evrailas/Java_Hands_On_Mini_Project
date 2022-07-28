@@ -8,11 +8,11 @@ public interface CRUDRepository<T, ID> {
 
     Optional<T> findByID(ID id)  ;
 
-    boolean delete(T t)  ;
+    void delete(T t)  ;
 
-    T create(T t) ;
+    void create(T t) ;
 
     List<T> createAll(T... ts) ;
 
-    boolean update(T t);
+    void update(T t);
 }

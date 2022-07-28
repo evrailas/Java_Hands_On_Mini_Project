@@ -1,19 +1,20 @@
 package Team3.JavaMiniProject.model;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class OrderItem extends Product {
 
-    private double finalPrice;
+    private BigDecimal finalPrice;
     private List<Product> list;
 
 
-    public OrderItem(int productID, String productName, double productPrice, String productInfo, double finalPrice) {
+    public OrderItem(int productID, String productName, BigDecimal productPrice, String productInfo, BigDecimal finalPrice) {
         super(productID, productName, productPrice, productInfo);
         this.finalPrice = finalPrice;
     }
 
-    public double getFinalPrice() {
+    public BigDecimal getFinalPrice() {
         return finalPrice;
     }
 }

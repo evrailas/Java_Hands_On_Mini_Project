@@ -4,6 +4,6 @@ import Team3.JavaMiniProject.model.Customer;
 
 public class CustomerService {
 
-    Customer customer = new Customer();
+
 
 }

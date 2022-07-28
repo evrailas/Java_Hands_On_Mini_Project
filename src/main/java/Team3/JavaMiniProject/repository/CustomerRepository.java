@@ -13,10 +13,10 @@ import java.util.List;
 
 
 
-public class CustomerRepository {
+public class CustomerRepository implements CRUDRepository<Customer, Long> {
     private static final Logger logger = LogManager.getLogger(CustomerRepository.class);
 
-    public List<Customer> selectCustomers() {
+    public List<Customer> findAll() {
         List<Customer> customers = new ArrayList<>();
         try{
 
@@ -44,7 +44,7 @@ public class CustomerRepository {
 
     }
 
-    private void insertCustomers(final Customer customer) {
+    public void create(final Customer customer) {
 
         try{
 
@@ -69,7 +69,7 @@ public class CustomerRepository {
         }
     }
 
-    private void updateCustomer(){
+    public void update(){
         try{
             Connection con = DataSource.getConnection();
             String sql = "UPDATE customers SET address='???' WHERE fullName='????'";
@@ -87,7 +87,7 @@ public class CustomerRepository {
         }
     }
 
-    private void deleteCustomer(){
+    private void delete(){
         try{
             Connection con = DataSource.getConnection();
             String sql = "DELETE FROM customers WHERE fullName =?";
