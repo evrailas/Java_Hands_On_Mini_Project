@@ -44,11 +44,10 @@ public class CustomerRepository {
 
     }
 
-    private void insertCustomers() {
+    private void insertCustomers(final Customer customer) {
 
         try{
 
-            Customer customer = new Customer;
             Connection con = DataSource.getConnection();
             String sql = "INSERT INTO customers (fullName, address, customerType)" + "VALUES(?,?,?)";
             PreparedStatement statement = con.prepareStatement(sql);
