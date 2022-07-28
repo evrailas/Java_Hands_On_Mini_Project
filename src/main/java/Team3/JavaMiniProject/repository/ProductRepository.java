@@ -18,9 +18,8 @@ public class ProductRepository implements CRUDRepository<Product,Long> {
         List<Product> products= new ArrayList<>();
         try {
             Connection con = DataSource.getConnection();
-            String sql = "Select * FROM";
-            Statement statement = con.createStatement();
-            ResultSet result = statement.executeQuery(sql);
+            PreparedStatement statement = con.prepareStatement(SQLrepository.get("find.all.products"));
+            ResultSet result = statement.executeQuery();
             while(result.next()){
                 products.add(new Product(result.getLong("id"),
                         result.getString("productName"),
