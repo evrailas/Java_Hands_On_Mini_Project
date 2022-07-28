@@ -1,5 +1,7 @@
 package Team3.JavaMiniProject.repository;
 
+import Team3.JavaMiniProject.model.Customer;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -10,9 +12,9 @@ public interface CRUDRepository<T, ID> {
 
     void delete(T t)  ;
 
-    void create(T t) ;
+    Customer create(T t) ;
 
     List<T> createAll(T... ts) ;
 
-    void update(T t);
+    boolean update(T t);
 }

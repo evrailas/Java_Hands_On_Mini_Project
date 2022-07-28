@@ -1,5 +1,6 @@
 package Team3.JavaMiniProject.repository;
 
+import Team3.JavaMiniProject.model.Customer;
 import Team3.JavaMiniProject.model.DataSource;
 import Team3.JavaMiniProject.model.Product;
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +41,7 @@ public class ProductRepository implements CRUDRepository<Product,Long> {
     public Optional<Product> findByID(Long aLong) {
         try {
             Connection connection = DataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SQLrepository.get("find.by.id"));
+             PreparedStatement preparedStatement = connection.prepareStatement(SQLrepository.get("find.id.products"));
 
             logger.debug("Finding product with ID={}", aLong);
 
@@ -83,7 +84,7 @@ public class ProductRepository implements CRUDRepository<Product,Long> {
     }
 
     @Override
-    public void create(Product product) {
+    public Customer create(Product product) {
 
         try{
 
@@ -107,6 +108,7 @@ public class ProductRepository implements CRUDRepository<Product,Long> {
             logger.error("Error while getting products{}", ex);
         }
 
+        return null;
     }
 
     @Override
@@ -115,7 +117,7 @@ public class ProductRepository implements CRUDRepository<Product,Long> {
         try{
 
             Connection con = DataSource.getConnection();
-            PreparedStatement preparedStatement = con.prepareStatement(SQLrepository.get("create.all.product"));
+            PreparedStatement preparedStatement = con.prepareStatement(SQLrepository.get("create.all.products"));
             log.debug("Creating a list of products with size{}",products.length);
             for(Product product:products){
                 preparedStatement.setString(1, product.getProductName());
@@ -137,7 +139,7 @@ public class ProductRepository implements CRUDRepository<Product,Long> {
     }
 
     @Override
-    public void update(Product product) {
+    public boolean update(Product product) {
         try{
 
             Connection con = DataSource.getConnection();
@@ -153,5 +155,6 @@ public class ProductRepository implements CRUDRepository<Product,Long> {
             logger.error("Error while creating products{}", ex);
         }
 
+        return false;
     }
 }

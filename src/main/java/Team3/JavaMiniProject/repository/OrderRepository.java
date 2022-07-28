@@ -37,7 +37,7 @@ public class OrderRepository implements  CRUDRepository<Order, Long> {
     public Optional<Order> findByID(Long aLong) {
         try {
             Connection connection = DataSource.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQLrepository.get("find.by.id"));
+            PreparedStatement preparedStatement = connection.prepareStatement(SQLrepository.get("find.id.order"));
 
             log.debug("Finding order with ID={}", aLong);
 
@@ -82,11 +82,11 @@ public class OrderRepository implements  CRUDRepository<Order, Long> {
     }
 
     @Override
-    public void create(Order order) {
+    public Customer create(Order order) {
         try{
 
             Connection con = DataSource.getConnection();
-            PreparedStatement preparedStatement = con.prepareStatement(SQLrepository.get("create.product"));
+            PreparedStatement preparedStatement = con.prepareStatement(SQLrepository.get("create.order"));
             log.debug("Creating and inserting product{}",order);
 
             preparedStatement.setLong(1, order.getId());
@@ -107,6 +107,7 @@ public class OrderRepository implements  CRUDRepository<Order, Long> {
             log.error("Error while getting products{}", ex);
         }
 
+        return null;
     }
 
     @Override
@@ -114,7 +115,7 @@ public class OrderRepository implements  CRUDRepository<Order, Long> {
         try{
 
             Connection con = DataSource.getConnection();
-            PreparedStatement preparedStatement = con.prepareStatement(SQLrepository.get("create.all.order"));
+            PreparedStatement preparedStatement = con.prepareStatement(SQLrepository.get("create.all.orders"));
             log.debug("Creating a list of products with size{}",orders.length);
             for(Order order:orders){
                 preparedStatement.setLong(1, order.getId());
@@ -139,7 +140,7 @@ public class OrderRepository implements  CRUDRepository<Order, Long> {
     }
 
     @Override
-    public void update(Order order) {
+    public boolean update(Order order) {
         try{
 
             Connection con = DataSource.getConnection();
@@ -158,5 +159,6 @@ public class OrderRepository implements  CRUDRepository<Order, Long> {
             log.error("Error while creating products{}", ex);
         }
 
+        return false;
     }
 }

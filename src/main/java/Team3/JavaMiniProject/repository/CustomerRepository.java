@@ -1,7 +1,5 @@
 package Team3.JavaMiniProject.repository;
 
-import Team3.JavaMiniProject.model.BaseModel;
-import Team3.JavaMiniProject.model.Product;
 import Team3.JavaMiniProject.types.CustomerType;
 import Team3.JavaMiniProject.model.Customer;
 import Team3.JavaMiniProject.model.DataSource;
@@ -46,7 +44,7 @@ public class CustomerRepository implements CRUDRepository<Customer, Long> {
     }
 
     @Override
-    public void update(final Customer customer) {
+    public boolean update(final Customer customer) {
 
         try {
 
@@ -68,10 +66,11 @@ public class CustomerRepository implements CRUDRepository<Customer, Long> {
         } catch (SQLException ex) {
             logger.error("Error while getting customers {}", ex);
         }
+        return false;
     }
 
     @Override
-    public void create(Customer customer) {
+    public Customer create(Customer customer) {
         try {
             Connection con = DataSource.getConnection();
             PreparedStatement statement = con.prepareStatement(SQLrepository.get("create.one.customer"));
@@ -86,6 +85,7 @@ public class CustomerRepository implements CRUDRepository<Customer, Long> {
         } catch (SQLException ex) {
             logger.error("Error while creating customers", ex);
         }
+        return customer;
     }
 
     public void delete(Customer customer) {
@@ -137,7 +137,7 @@ public class CustomerRepository implements CRUDRepository<Customer, Long> {
     @Override
     public Optional<Customer> findByID(Long aLong) {
         try (Connection connection = DataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement("")) {
+             PreparedStatement statement = connection.prepareStatement(SQLrepository.get("find.id.customer"))) {
 
             logger.debug("Finding Customer with ID={}", aLong);
 

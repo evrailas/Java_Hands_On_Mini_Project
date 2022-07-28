@@ -1,22 +1,14 @@
 package Team3.JavaMiniProject.model;
 
+import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
+@Getter
+@Setter
 @SuperBuilder
 public abstract class BaseModel {
 
     private long id;
 
-    public BaseModel(long id) {
-        this.id = id;
-    }
-
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 }
