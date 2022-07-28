@@ -1,108 +1,164 @@
 package Team3.JavaMiniProject.repository;
 
 import Team3.JavaMiniProject.model.BaseModel;
+import Team3.JavaMiniProject.model.Product;
 import Team3.JavaMiniProject.types.CustomerType;
 import Team3.JavaMiniProject.model.Customer;
 import Team3.JavaMiniProject.model.DataSource;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 
-
+@Slf4j
 public class CustomerRepository implements CRUDRepository<Customer, Long> {
     private static final Logger logger = LogManager.getLogger(CustomerRepository.class);
 
+    @Override
     public List<Customer> findAll() {
         List<Customer> customers = new ArrayList<>();
-        try{
+        try {
 
             Connection con = DataSource.getConnection();
-            String sql = "Select * FROM";
-            Statement statement = con.createStatement();
-            ResultSet result = statement.executeQuery(sql);
+            PreparedStatement statement = con.prepareStatement(SQLrepository.get("find.all.customers"));
+            ResultSet result = statement.executeQuery();
 
-            while(result.next()){
-                    customers.add(new Customer(result.getLong("id"),
-                            result.getString("fullName"),
-                            result.getString("address"),
-                            CustomerType.valueOf(result.getString("customerType"))));
+            while (result.next()) {
+                customers.add(Customer.builder().id(result.getLong("id"))
+                        .fullName(result.getString("fullName"))
+                        .address(result.getString("address"))
+                        .customerType(CustomerType.valueOf(result.getString("customerType"))).build());
 
-                    logger.info(String.valueOf(result.getInt("user_id")),result.getString(" "),
-                            result.getString(" "), CustomerType.valueOf(result.getString(" ")));
+                logger.info(String.valueOf(result.getInt("id")), result.getString("fullName"),
+                        result.getString("address"), CustomerType.valueOf(result.getString("customerType")));
 
             }
 
 
-        }catch (SQLException ex){
+        } catch (SQLException ex) {
             logger.error("Error while getting customers", ex);
         }
         return customers;
 
     }
 
-    public void create(final Customer customer) {
+    @Override
+    public void update(final Customer customer) {
 
-        try{
+        try {
 
             Connection con = DataSource.getConnection();
-            String sql = "INSERT INTO customers (fullName, address, customerType)" + "VALUES(?,?,?)";
-            PreparedStatement statement = con.prepareStatement(sql);
+            PreparedStatement statement = con.prepareStatement(SQLrepository.get("update.one.customer"));
 
 
-           statement.setString(1, customer.getFullName());
-           statement.setString(2, customer.getAddress());
-           statement.setString(3, customer.getCustomerType());
+            statement.setString(1, customer.getFullName());
+            statement.setString(2, customer.getAddress());
+            statement.setString(3, String.valueOf(customer.getCustomerType()));
 
             int row = statement.executeUpdate();
 
-            if (row > 0){
-                logger.info("A new customer has been inserted successfully.");
+            if (row > 0) {
+                logger.info("A customer has been updated successfully.");
             }
 
 
-        }catch (SQLException ex){
-            logger.error("Error while getting customers", ex);
+        } catch (SQLException ex) {
+            logger.error("Error while getting customers {}", ex);
         }
     }
 
-    public void update(){
-        try{
+    @Override
+    public void create(Customer customer) {
+        try {
             Connection con = DataSource.getConnection();
-            String sql = "UPDATE customers SET address='???' WHERE fullName='????'";
-            PreparedStatement statement = con.prepareStatement(sql);
+            PreparedStatement statement = con.prepareStatement(SQLrepository.get("create.one.customer"));
 
-            int row = statement.executeUpdate(sql);
+            int row = statement.executeUpdate();
 
-            if (row > 0){
-                logger.info("The customer has been updated successfully.");
+            if (row > 0) {
+                logger.info("The customer has been created successfully.");
             }
 
 
-        }catch (SQLException ex){
-            logger.error("Error while getting customers", ex);
+        } catch (SQLException ex) {
+            logger.error("Error while creating customers", ex);
         }
     }
 
-    private void delete(){
-        try{
+    public void delete(Customer customer) {
+        try {
             Connection con = DataSource.getConnection();
-            String sql = "DELETE FROM customers WHERE fullName =?";
-            PreparedStatement statement = con.prepareStatement(sql);
+            PreparedStatement statement = con.prepareStatement(SQLrepository.get("delete.one.customer"));
 
 
-            int row = statement.executeUpdate(sql);
+            int row = statement.executeUpdate();
 
-            if (row > 0){
-                logger.info("The customer has been deleted successfully.");
+            if (row > 0) {
+                logger.info("The customer {} has been deleted successfully.", customer.getId());
             }
 
 
-        }catch (SQLException ex){
-            logger.error("Error while getting customers", ex);
+        } catch (SQLException ex) {
+            logger.error("Error while deleting customer {}", ex);
         }
+    }
+
+    @Override
+    public List<Customer> createAll(Customer... customers) {
+
+        try {
+            Connection con = DataSource.getConnection();
+            PreparedStatement statement = con.prepareStatement(SQLrepository.get("create.all.customer"));
+
+
+            logger.info("{} Customers will be added", customers.length);
+
+            for (Customer customer : customers) {
+                statement.setString(1, customer.getFullName());
+                statement.setString(2, customer.getAddress());
+                statement.setString(3, String.valueOf(customer.getCustomerType()));
+
+            }
+
+            statement.addBatch();
+            return Arrays.asList(customers);
+
+
+        } catch (SQLException ex) {
+            logger.error("Error while creating customers", ex);
+        }
+
+        return Collections.emptyList();
+    }
+
+    @Override
+    public Optional<Customer> findByID(Long aLong) {
+        try (Connection connection = DataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement("")) {
+
+            logger.debug("Finding Customer with ID={}", aLong);
+
+
+            statement.setLong(1, aLong);
+
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                return Optional.of(Customer.builder().id(result.getLong("id"))
+                        .fullName(result.getString("fullName"))
+                        .address(result.getString("address"))
+                        .customerType(CustomerType.valueOf(result.getString("productInfo"))).build());
+
+            } else {
+                return Optional.empty();
+            }
+
+
+        } catch (SQLException exception) {
+            logger.error("Error while getting products{}", exception);
+        }
+        return Optional.empty();
     }
 }

@@ -1,7 +1,17 @@
 package Team3.JavaMiniProject.model;
 
 import Team3.JavaMiniProject.types.CustomerType;
+import jdk.jshell.Snippet;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
+
+@Getter
+@Setter
+@ToString(callSuper = true)
+@SuperBuilder
 public class Customer extends BaseModel{
 
     private String fullName;
@@ -10,50 +20,5 @@ public class Customer extends BaseModel{
     private double customerDiscount;
     private Wallet wallet;
 
-    public Customer(long id,String fullName, String address, CustomerType customerType) {
-        super(id);
-        this.fullName = fullName;
-        this.address = address;
-        this.customerType = customerType;
-        wallet = new Wallet(20.0f);
 
-    }
-
-    public void PayAmount(float amountToPay)
-    {
-        if (wallet.Value >= amountToPay)
-            wallet.SubMoney(amountToPay);
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getCustomerType() {
-        return String.valueOf(customerType);
-    }
-
-    public void setCustomerType(CustomerType customerType) {
-        this.customerType = customerType;
-    }
-
-    public double getCustomerDiscount() {
-        return customerDiscount;
-    }
-
-    public void setCustomerDiscount(double customerDiscount) {
-        this.customerDiscount = customerDiscount;
-    }
 }

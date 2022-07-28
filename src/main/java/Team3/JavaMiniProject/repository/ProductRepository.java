@@ -21,10 +21,13 @@ public class ProductRepository implements CRUDRepository<Product,Long> {
             PreparedStatement statement = con.prepareStatement(SQLrepository.get("find.all.products"));
             ResultSet result = statement.executeQuery();
             while(result.next()){
-                products.add(new Product(result.getLong("id"),
-                        result.getString("productName"),
-                        result.getBigDecimal("productPrice"),
-                        result.getString("productInfo") ));
+                products.add(Product.builder().id(result.getLong("id"))
+                        .productName(result.getString("productName"))
+                        .productPrice(result.getBigDecimal("productPrice"))
+                        .productInfo(result.getString("productInfo")).build());
+
+                logger.info(String.valueOf(result.getLong("id")
+                ), result.getString("productName"), result.getBigDecimal("productPrice"), result.getString("productInfo"));
             }
 
         }catch (SQLException exception){
@@ -66,7 +69,7 @@ public class ProductRepository implements CRUDRepository<Product,Long> {
         try (Connection connection = DataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("")){
 
-            log.debug("Deleting product {}", product);
+            log.info("Deleting product {}", product);
 
             preparedStatement.setLong(1, product.getId());
 
@@ -101,7 +104,7 @@ public class ProductRepository implements CRUDRepository<Product,Long> {
 
 
         }catch (SQLException ex){
-            logger.error("Error while getting customers{}", ex);
+            logger.error("Error while getting products{}", ex);
         }
 
     }
@@ -122,7 +125,7 @@ public class ProductRepository implements CRUDRepository<Product,Long> {
 
             }
 
-            statement.executeUpdate();
+            statement.addBatch();
             return Arrays.asList(products);
 
 

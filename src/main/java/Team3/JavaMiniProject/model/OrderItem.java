@@ -1,20 +1,21 @@
 package Team3.JavaMiniProject.model;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
+
 import java.math.BigDecimal;
 import java.util.List;
 
+@Getter
+@Setter
+@ToString(callSuper = true)
+@SuperBuilder
 public class OrderItem extends Product {
 
     private BigDecimal finalPrice;
     private List<Product> list;
 
 
-    public OrderItem(int productID, String productName, BigDecimal productPrice, String productInfo, BigDecimal finalPrice) {
-        super(productID, productName, productPrice, productInfo);
-        this.finalPrice = finalPrice;
-    }
-
-    public BigDecimal getFinalPrice() {
-        return finalPrice;
-    }
 }
