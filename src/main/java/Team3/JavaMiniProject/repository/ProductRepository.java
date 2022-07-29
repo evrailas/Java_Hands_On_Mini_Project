@@ -1,27 +1,30 @@
 package Team3.JavaMiniProject.repository;
 
-import Team3.JavaMiniProject.model.Customer;
 import Team3.JavaMiniProject.model.DataSource;
 import Team3.JavaMiniProject.model.Product;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 
-
 @Slf4j
-public class ProductRepository implements CRUDRepository<Product,Long> {
+public class ProductRepository implements CRUDRepository<Product, Long> {
+
     private static final Logger logger = LogManager.getLogger(ProductRepository.class);
+
     @Override
     public List<Product> findAll() {
-        List<Product> products= new ArrayList<>();
+        List<Product> products = new ArrayList<>();
         try {
             Connection con = DataSource.getConnection();
             PreparedStatement statement = con.prepareStatement(SQLrepository.get("find.all.products"));
             ResultSet result = statement.executeQuery();
-            while(result.next()){
+            while (result.next()) {
                 products.add(Product.builder().id(result.getLong("id"))
                         .productName(result.getString("productName"))
                         .productPrice(result.getBigDecimal("productPrice"))
@@ -30,9 +33,8 @@ public class ProductRepository implements CRUDRepository<Product,Long> {
                 logger.info(String.valueOf(result.getLong("id")
                 ), result.getString("productName"), result.getBigDecimal("productPrice"), result.getString("productInfo"));
             }
-
-        }catch (SQLException exception){
-            log.error("Error while getting products{}",exception);
+        } catch (SQLException exception) {
+            log.error("Error while getting products{}", exception);
         }
         return products;
     }
@@ -41,11 +43,8 @@ public class ProductRepository implements CRUDRepository<Product,Long> {
     public Optional<Product> findByID(Long aLong) {
         try {
             Connection connection = DataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SQLrepository.get("find.id.products"));
-
+            PreparedStatement preparedStatement = connection.prepareStatement(SQLrepository.get("find.id.products"));
             logger.debug("Finding product with ID={}", aLong);
-
-
             preparedStatement.setLong(1, aLong);
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -54,12 +53,9 @@ public class ProductRepository implements CRUDRepository<Product,Long> {
                         .productName(resultSet.getString("productName"))
                         .productPrice(resultSet.getBigDecimal("productPrice"))
                         .productInfo(resultSet.getString("productInfo")).build());
-
             } else {
                 return Optional.empty();
             }
-
-
         } catch (SQLException exception) {
             logger.error("Error while getting products{}", exception);
         }
@@ -68,71 +64,52 @@ public class ProductRepository implements CRUDRepository<Product,Long> {
 
     @Override
     public void delete(Product product) {
-        try{ Connection connection = DataSource.getConnection();
+        try {
+            Connection connection = DataSource.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQLrepository.get("delete.product"));
-
             log.info("Deleting product {}", product);
-
             preparedStatement.setLong(1, product.getId());
-
             int result = preparedStatement.executeUpdate();
-
         } catch (SQLException e) {
-           log.error("Could not delete product{}", e);
+            log.error("Could not delete product{}", e);
         }
-
     }
 
     @Override
     public Product create(Product product) {
-
-        try{
-
+        try {
             Connection con = DataSource.getConnection();
             PreparedStatement preparedStatement = con.prepareStatement(SQLrepository.get("create.product"));
-            log.debug("Creating and inserting product{}",product);
-
-
+            log.debug("Creating and inserting product{}", product);
             preparedStatement.setString(1, product.getProductName());
             preparedStatement.setString(2, product.getProductPrice().toString());
             preparedStatement.setString(3, product.getProductInfo());
 
             int row = preparedStatement.executeUpdate();
 
-            if (row > 0){
+            if (row > 0) {
                 logger.info("A new product has been inserted successfully.");
             }
-
-
-        }catch (SQLException ex){
+        } catch (SQLException ex) {
             logger.error("Error while getting products{}", ex);
         }
-
         return null;
     }
 
     @Override
     public List<Product> createAll(Product... products) {
-
-        try{
-
+        try {
             Connection con = DataSource.getConnection();
             PreparedStatement preparedStatement = con.prepareStatement(SQLrepository.get("create.all.products"));
-            log.debug("Creating a list of products with size{}",products.length);
-            for(Product product:products){
+            log.debug("Creating a list of products with size{}", products.length);
+            for (Product product : products) {
                 preparedStatement.setString(1, product.getProductName());
                 preparedStatement.setString(2, product.getProductPrice().toString());
                 preparedStatement.setString(3, product.getProductInfo());
-
             }
-
             preparedStatement.addBatch();
             return Arrays.asList(products);
-
-
-
-
-        }catch (SQLException ex){
+        } catch (SQLException ex) {
             logger.error("Error while creating products{}", ex);
         }
         return Collections.emptyList();
@@ -140,21 +117,18 @@ public class ProductRepository implements CRUDRepository<Product,Long> {
 
     @Override
     public boolean update(Product product) {
-        try{
-
+        try {
             Connection con = DataSource.getConnection();
             PreparedStatement preparedStatement = con.prepareStatement(SQLrepository.get("update.product"));
-            log.debug("Updating products {}",product);
-
+            log.debug("Updating products {}", product);
             preparedStatement.setString(1, product.getProductName());
             preparedStatement.setString(2, product.getProductPrice().toString());
             preparedStatement.setString(3, product.getProductInfo());
             preparedStatement.executeUpdate();
-
-        }catch (SQLException ex){
+        } catch (SQLException ex) {
             logger.error("Error while creating products{}", ex);
         }
-
         return false;
     }
+
 }

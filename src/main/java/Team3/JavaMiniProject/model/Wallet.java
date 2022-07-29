@@ -5,7 +5,6 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
-import java.math.BigDecimal;
 @Getter
 @Setter
 @ToString(callSuper = true)
@@ -17,13 +16,11 @@ public class Wallet {
         Value = initialAmount;
     }
 
-    public void AddMoney(float amount)
-    {
+    public void AddMoney(float amount) {
         Value += amount;
     }
 
-    public void SubMoney(float amount)
-    {
+    public void SubMoney(float amount) {
         Value -= amount;
     }
 }
